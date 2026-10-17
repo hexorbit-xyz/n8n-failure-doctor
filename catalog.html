@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n failure catalog</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #14171e; color: #f2ede4; font: 16px/1.45 "Avenir Next", "Segoe UI", sans-serif; }
+  main { width: min(760px, calc(100% - 32px)); margin: 32px 0 48px 16px; }
+  h1 { font-family: Palatino, Georgia, serif; font-weight: 560; font-size: 32px; letter-spacing: -0.03em; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  a { color: #c9843a; }
+  .muted { color: #9a9388; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 8px 10px 0; border-top: 1px solid #2c313c; }
+  th { color: #9a9388; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+  code { font: 13px/1.4 ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <p class="muted">HexOrbit · no install · nothing is sent</p>
+  <h1>Failure catalog</h1>
+  <p>These are the sentences the paste box already names. The page will not change the workflow. Apply the fix yourself in n8n.</p>
+  <p><a href="index.html">Back to the paste box</a></p>
+  <table>
+    <thead>
+      <tr><th>Cause</th><th>Sentence</th><th>Fix you apply</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>expired_auth</code></td>
+        <td>Authorization failed - please check your credentials</td>
+        <td>Reconnect that credential in n8n.</td>
+      </tr>
+      <tr>
+        <td><code>missing_credential</code></td>
+        <td>Credential with ID … does not exist for type "redis".</td>
+        <td>Open the node and pick a credential this instance actually has.</td>
+      </tr>
+      <tr>
+        <td><code>out_of_memory</code></td>
+        <td>n8n may have run out of memory while running this execution.</td>
+        <td>Raise the container memory or split the payload. Do not rerun the same load.</td>
+      </tr>
+      <tr>
+        <td><code>unpublished</code></td>
+        <td>The workflow must be active for a production URL to run successfully.</td>
+        <td>Publish the workflow in n8n. This page will not do that.</td>
+      </tr>
+      <tr>
+        <td><code>test_webhook</code></td>
+        <td>In test mode, the webhook only works for one call after you click this button.</td>
+        <td>Click Execute workflow, then call the test URL once.</td>
+      </tr>
+      <tr>
+        <td><code>click_never_schedule</code></td>
+        <td>No runtime error. The only trigger is manual.</td>
+        <td>Add a schedule or webhook if it is supposed to run on its own.</td>
+      </tr>
+      <tr>
+        <td><code>unknown</code></td>
+        <td>ECONNREFUSED 10.0.0.8:5432</td>
+        <td>The page does not guess. Read the failed node in n8n.</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

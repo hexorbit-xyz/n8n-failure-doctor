@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n failure doctor</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0;
+    background: #14171e;
+    color: #f2ede4;
+    font: 16px/1.45 "Avenir Next", "Segoe UI", sans-serif;
+  }
+  main { width: min(720px, calc(100% - 32px)); margin: 32px 0 48px 16px; }
+  h1 { font-family: Palatino, Georgia, serif; font-weight: 560; font-size: 32px; letter-spacing: -0.03em; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .muted { color: #9a9388; }
+  textarea {
+    width: 100%;
+    min-height: 180px;
+    box-sizing: border-box;
+    background: #1c2029;
+    color: #f2ede4;
+    border: 1px solid #2c313c;
+    padding: 12px;
+    font: 13px/1.4 ui-monospace, monospace;
+  }
+  button {
+    margin-top: 10px;
+    min-height: 44px;
+    padding: 0 16px;
+    background: #c9843a;
+    color: #14171e;
+    border: 0;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #out {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #2c313c;
+  }
+  dt { color: #9a9388; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 12px; }
+  dd { margin: 4px 0 0; }
+  .warn { color: #c45c3a; }
+</style>
+</head>
+<body>
+<main>
+  <p class="muted">HexOrbit · no install · nothing is sent</p>
+  <h1>Why did this n8n run stop?</h1>
+  <p>Paste an execution, an Error Trigger payload, or a workflow export. The note stays in this browser. Nothing is sent. Known sentences are listed in <a href="catalog.html">catalog.html</a>.</p>
+  <label for="raw">Execution or workflow JSON</label>
+  <textarea id="raw" spellcheck="false" placeholder='{ "workflow": { "active": false, "nodes": [] }, "execution": { "status": "error" } }'></textarea>
+  <button type="button" id="go">Diagnose</button>
+  <div id="out" hidden>
+    <p class="warn">This does not change the workflow. Apply any fix yourself in n8n.</p>
+    <dl>
+      <dt>Cause</dt><dd id="cause"></dd>
+      <dt>Node</dt><dd id="node"></dd>
+      <dt>Note</dt><dd id="summary"></dd>
+    </dl>
+  </div>
+  <p id="err" class="warn" hidden></p>
+</main>
+<script src="diagnose.js"></script>
+<script>
+  document.getElementById('go').addEventListener('click', () => {
+    const err = document.getElementById('err');
+    const out = document.getElementById('out');
+    err.hidden = true;
+    out.hidden = true;
+    let parsed;
+    try {
+      parsed = JSON.parse(document.getElementById('raw').value);
+    } catch (e) {
+      err.hidden = false;
+      err.textContent = 'That is not JSON.';
+      return;
+    }
+    const report = window.N8nDoctor.diagnose(parsed);
+    document.getElementById('cause').textContent = report.cause;
+    document.getElementById('node').textContent = report.node || '—';
+    document.getElementById('summary').textContent = report.summary;
+    out.hidden = false;
+  });
+</script>
+</body>
+</html>

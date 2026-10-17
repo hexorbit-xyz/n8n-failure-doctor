@@ -1,0 +1,38 @@
+{
+  "id": "FailureDoctor401",
+  "name": "Failure Doctor Synthetic 401",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "failure-doctor-401",
+        "options": {}
+      },
+      "id": "fd-hook",
+      "name": "Hook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "failure-doctor-401"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://httpbin.org/status/401",
+        "options": {}
+      },
+      "id": "fd-http",
+      "name": "Expect 401",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 0]
+    }
+  ],
+  "connections": {
+    "Hook": {
+      "main": [[{ "node": "Expect 401", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}
