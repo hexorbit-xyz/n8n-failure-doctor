@@ -4,7 +4,7 @@ No install. Open the page, paste the JSON, read the note. Nothing is sent, and n
 
 ## Use
 
-1. Open the hosted page, or download this repo and open `index.html`.
+1. Open https://hexorbit-xyz.github.io/n8n-failure-doctor/ , or download this repo and open `index.html`.
 2. Paste an execution export, an Error Trigger payload, or a workflow export.
 3. Apply the fix yourself in n8n. This page will not change the workflow.
 
