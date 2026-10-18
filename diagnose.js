@@ -13,6 +13,8 @@ function errorText(input) {
   const bits = [];
   if (result.error) bits.push(result.error.message, result.error.errorMessage, result.error.description, result.error.name);
   if (input.errorMessage) bits.push(input.errorMessage);
+  if (input.errorDescription) bits.push(input.errorDescription);
+  if (input.errorDetails) bits.push(input.errorDetails.httpCode, ...(input.errorDetails.rawErrorMessage || []));
   if (input.execution?.errorMessage) bits.push(input.execution.errorMessage);
   if (input.execution?.error) bits.push(input.execution.error.message, input.execution.error.description);
   if (input.trigger?.error) bits.push(input.trigger.error.message, input.trigger.error.cause?.message);
@@ -33,6 +35,7 @@ function failedNode(input) {
   }
   if (input.execution?.lastNodeExecuted) return input.execution.lastNodeExecuted;
   if (input.trigger?.error?.node?.name) return input.trigger.error.node.name;
+  if (input.n8nDetails?.nodeName) return input.n8nDetails.nodeName;
   return null;
 }
 
@@ -57,6 +60,9 @@ function diagnose(input) {
   const workflow = workflowOf(source);
   const called = source.calledUrl || source.execution?.webhookUrl || '';
 
+  if (/you need to be logged in|not_logged_in/i.test(text)) {
+    return report('not_logged_in', node, true, `${node || 'This node'} called a page that wants a login. Add that site's login on the HTTP node, or stop calling a private URL. This page will not do that.`);
+  }
   if (/invalid_grant|unauthorized|authorization failed|please check your credentials|credentials are not set|\b401\b/i.test(text)) {
     return report('expired_auth', node, true, `${node} rejected the sign-in. Reconnect that credential in n8n. The error was: ${text}`);
   }

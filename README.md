@@ -15,6 +15,7 @@ The paste stays in the browser. Do not upload a file that still contains a live 
 | Class | When |
 |---|---|
 | `expired_auth` | 401, invalid_grant, unauthorized, “authorization failed” |
+| `not_logged_in` | 403 plus “You need to be logged in” — not an expired n8n credential |
 | `missing_credential` | “Credential with ID … does not exist” — the id is not echoed |
 | `out_of_memory` | heap / allocation failure |
 | `test_webhook` | `/webhook-test/` or “webhook is not registered” |

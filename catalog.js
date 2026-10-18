@@ -149,6 +149,19 @@ const rows = [
       workflow: { id: '2', name: 'Activation' },
     },
   },
+  {
+    id: 'forum-not-logged-in',
+    cause: 'not_logged_in',
+    source: 'Staging run on Community mention check. Error panel copy.',
+    sentence: 'You need to be logged in to do that.',
+    fix: 'Add that site\'s login on the HTTP node, or stop calling a private URL.',
+    paste: {
+      errorMessage: 'Forbidden - perhaps check your credentials?',
+      errorDescription: 'You need to be logged in to do that.',
+      errorDetails: { httpCode: '403' },
+      n8nDetails: { nodeName: 'Read comment notifications' },
+    },
+  },
 ];
 
 if (typeof module !== 'undefined' && module.exports) {
