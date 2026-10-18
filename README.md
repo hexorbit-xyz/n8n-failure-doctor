@@ -12,16 +12,25 @@ The paste stays in the browser. Do not upload a file that still contains a live 
 
 ## Cause classes
 
-| Class | When |
+Every class is listed with a real example sentence in [catalog.html](catalog.html). That page is generated from `catalog.js`, so run `node scripts/build-catalog.js` after you add a row.
+
+| Group | Classes |
 |---|---|
-| `expired_auth` | 401, invalid_grant, unauthorized, “authorization failed” |
-| `not_logged_in` | 403 plus “You need to be logged in” — not an expired n8n credential |
-| `missing_credential` | “Credential with ID … does not exist” — the id is not echoed |
-| `out_of_memory` | heap / allocation failure |
-| `test_webhook` | `/webhook-test/` or “webhook is not registered” |
-| `unpublished` | `active: false` and a webhook, cron, or schedule trigger |
-| `click_never_schedule` | the only trigger is manual |
-| `unknown` | anything else — the note says it is not in the catalog |
+| Sign-in and access | `expired_auth`, `not_logged_in`, `missing_credential`, `forbidden`, `bot_protection`, `oauth_redirect`, `meta_webhook_verify` |
+| Limits | `rate_limited`, `quota_exceeded`, `out_of_memory`, `data_table_limit` |
+| Network | `connection_refused`, `connection_reset`, `host_not_found`, `timeout`, `ssl_certificate`, `server_error`, `not_found`, `bad_request`, `invalid_url` |
+| Webhooks | `test_webhook`, `unpublished`, `webhook_not_registered`, `no_webhook_response`, `click_never_schedule` |
+| Code and data | `code_return_shape`, `undefined_field`, `referenced_node`, `paired_item`, `js_error`, `code_node_timeout`, `tool_schema_mismatch` |
+| n8n itself | `task_runner_timeout`, `runner_unresponsive`, `database_locked`, `database_connect_timeout` |
+| Anything else | `unknown`: the note says it is not in the catalog |
+
+## Adding a sentence
+
+1. Find a real paste of that shape (a public forum post is fine) that the page cannot name, or names wrongly.
+2. Add it to `fixtures/forum-posts.json` with the topic id and the class it should get. Run `node --test` and watch it fail.
+3. Change the rule in `diagnose.js`, add a row to `catalog.js`, run `node scripts/build-catalog.js`, and run the tests again.
+
+Rules that mention only a number or a common word (429, 404, timeout) are the riskiest. Keep a fixture that must stay `unknown` for each false match you fix.
 
 `apply` is always false.
 

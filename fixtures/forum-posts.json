@@ -1,0 +1,287 @@
+[
+  {
+    "topic": 308453,
+    "errorMessage": "429 Too Many Requests — You exceeded your current quota.",
+    "expect": "quota_exceeded"
+  },
+  {
+    "topic": 308924,
+    "errorMessage": "Forbidden - perhaps check your credentials?",
+    "errorDescription": "Quota exceeded for quota metric 'Queries' and limit",
+    "expect": "quota_exceeded"
+  },
+  {
+    "topic": 318006,
+    "errorMessage": "the API returns 429 Too Many Requests",
+    "expect": "rate_limited"
+  },
+  {
+    "topic": 312813,
+    "errorMessage": "the API starts returning 429 Too Many Requests",
+    "expect": "rate_limited"
+  },
+  {
+    "topic": 316212,
+    "errorMessage": "429 Rate limit exceeded",
+    "errorDescription": "The service is receiving too many requests from you",
+    "expect": "rate_limited"
+  },
+  {
+    "topic": 317564,
+    "errorMessage": "Cannot read properties of undefined (reading 'json')",
+    "expect": "undefined_field"
+  },
+  {
+    "topic": 313299,
+    "errorMessage": "Cannot read properties of null (reading 'toLowerCase')",
+    "expect": "undefined_field"
+  },
+  {
+    "topic": 317807,
+    "errorMessage": "ExpressionError: Paired item data could not be resolved",
+    "expect": "paired_item"
+  },
+  {
+    "topic": 185150,
+    "errorMessage": "Cannot assign to read only property 'name' of object 'Error: Referenced node is unexecuted'",
+    "expect": "referenced_node"
+  },
+  {
+    "topic": 137760,
+    "errorMessage": "Referenced node doesn't exist",
+    "expect": "referenced_node"
+  },
+  {
+    "topic": 137170,
+    "errorMessage": "Code doesn't return items properly",
+    "errorDescription": "Please return an array of objects, one for each item you would like to output.",
+    "expect": "code_return_shape"
+  },
+  {
+    "topic": 81167,
+    "errorMessage": "axios is not defined [line 5]",
+    "expect": "js_error"
+  },
+  {
+    "topic": 317348,
+    "errorMessage": "502 Bad Gateway",
+    "errorDescription": "The error mentions something around the TLS connection timing out.",
+    "expect": "server_error"
+  },
+  {
+    "topic": 319572,
+    "errorMessage": "The platform sends 503 error",
+    "expect": "server_error"
+  },
+  {
+    "topic": 311994,
+    "errorMessage": "timeout exceeded when trying to connect",
+    "expect": "database_connect_timeout"
+  },
+  {
+    "topic": 313863,
+    "errorMessage": "Problem in node 'Node1' Request timed out.",
+    "expect": "timeout"
+  },
+  {
+    "topic": 313086,
+    "errorMessage": "McpError: MCP error -32001: Request timed out",
+    "expect": "timeout"
+  },
+  {
+    "topic": 246217,
+    "errorMessage": "The connection timed out, consider setting the 'Retry on Fail' option in the node settings",
+    "expect": "timeout"
+  },
+  {
+    "topic": 221262,
+    "errorMessage": "The service refused the connection - perhaps it is offline",
+    "expect": "connection_refused"
+  },
+  {
+    "topic": 311162,
+    "errorMessage": "connect ECONNREFUSED 172.17.0.1:9999",
+    "expect": "connection_refused"
+  },
+  {
+    "topic": 314105,
+    "errorMessage": "getaddrinfo ENOTFOUND",
+    "expect": "host_not_found"
+  },
+  {
+    "topic": 314953,
+    "errorMessage": "Request execution: Error code: ECONNRESET",
+    "errorDescription": "Client network socket disconnected before a secure TLS connection was established",
+    "expect": "connection_reset"
+  },
+  {
+    "topic": 311450,
+    "errorMessage": "self-signed certificate in certificate chain",
+    "expect": "ssl_certificate"
+  },
+  {
+    "topic": 125485,
+    "errorMessage": "unable to verify the first certificate",
+    "expect": "ssl_certificate"
+  },
+  {
+    "topic": 322046,
+    "errorMessage": "403 Forbidden – Cloudflare Attention Required",
+    "expect": "bot_protection"
+  },
+  {
+    "topic": 315909,
+    "errorMessage": "400 Bad request",
+    "expect": "bad_request"
+  },
+  {
+    "topic": 313679,
+    "errorMessage": "400 Bad Request: Unsupported request - method type: post",
+    "expect": "bad_request"
+  },
+  {
+    "topic": 316342,
+    "errorMessage": "Error: The OAuth callback state is invalid!",
+    "expect": "oauth_redirect"
+  },
+  {
+    "topic": 313928,
+    "errorMessage": "Grant failed: Invalid redirect_uri: not registered for this client",
+    "expect": "oauth_redirect"
+  },
+  {
+    "topic": 315389,
+    "errorMessage": "Error: Insufficient parameters for OAuth2 callback.",
+    "expect": "oauth_redirect"
+  },
+  {
+    "topic": 314100,
+    "errorMessage": "Task execution aborted because runner became unresponsive.",
+    "expect": "runner_unresponsive"
+  },
+  {
+    "topic": 307499,
+    "errorMessage": "The workflow did not return a response",
+    "expect": "no_webhook_response"
+  },
+  {
+    "topic": 322205,
+    "errorMessage": "Validation error with data table request: Data table size limit exceeded: 50MB used, limit is 50MB",
+    "expect": "data_table_limit"
+  },
+  {
+    "topic": 316371,
+    "errorMessage": "Received tool input did not match expected schema",
+    "expect": "tool_schema_mismatch"
+  },
+  {
+    "topic": 311727,
+    "errorMessage": "Unexpected HTTP client error: TypeError: Failed to parse URL from [object Request]",
+    "expect": "invalid_url"
+  },
+  {
+    "topic": 316928,
+    "errorMessage": "The requested webhook \"GET xxxxxxxx/webhook\" is not registered.",
+    "expect": "webhook_not_registered",
+    "note": "Production trigger that would not register. Not the test-mode case."
+  },
+  {
+    "topic": 317640,
+    "errorMessage": "The requested webhook ... is not registered.",
+    "expect": "webhook_not_registered"
+  },
+  {
+    "topic": 314955,
+    "errorMessage": "Received request for unknown webhook: The requested webhook \"POST xxxxxxxx/webhook\" is not registered.",
+    "expect": "webhook_not_registered"
+  },
+  {
+    "topic": 317773,
+    "errorMessage": "(#190) Invalid OAuth 2.0 Access Token: Error validating access token: Session has expired or is invalid.",
+    "expect": "expired_auth"
+  },
+  {
+    "topic": 17730,
+    "errorMessage": "\"allowUnauthorizedCerts\": true, \"forceReconnect\": 60",
+    "expect": "unknown",
+    "note": "False positive found 19 Oct 2026: a config snippet, not an error."
+  },
+  {
+    "topic": 321544,
+    "errorMessage": "Error: Failed to receive response",
+    "expect": "unknown",
+    "note": "Too generic to name. Must stay unknown."
+  },
+  {
+    "topic": 158630,
+    "errorMessage": "Problem in node 'Poll Veo Status' The resource you are requesting could not be found",
+    "expect": "not_found"
+  },
+  {
+    "topic": 304239,
+    "errorMessage": "404 - The resource you are requesting could not be found / Requested entity was not found",
+    "expect": "not_found"
+  },
+  {
+    "topic": 283614,
+    "errorMessage": "Service unavailable - try again later or consider setting this node to retry automatically",
+    "expect": "server_error"
+  },
+  {
+    "topic": 309689,
+    "errorMessage": "Task request timed out. Your Code node task was not matched to a runner within the timeout period",
+    "expect": "task_runner_timeout"
+  },
+  {
+    "topic": 309663,
+    "errorMessage": "Task request timed out",
+    "expect": "task_runner_timeout"
+  },
+  {
+    "topic": 306079,
+    "errorMessage": "Error: Task execution timed out after 300 seconds",
+    "expect": "code_node_timeout"
+  },
+  {
+    "topic": 307886,
+    "errorMessage": "Error: database is locked",
+    "expect": "database_locked"
+  },
+  {
+    "topic": 308463,
+    "errorMessage": "Timeout waiting for lock SqliteWriteConnectionMutex to become available",
+    "expect": "database_locked"
+  },
+  {
+    "topic": 306096,
+    "errorMessage": "Error: timeout exceeded when trying to connect",
+    "expect": "database_connect_timeout"
+  },
+  {
+    "topic": 309513,
+    "errorMessage": "The callback URL or verify token couldn't be validated.",
+    "expect": "meta_webhook_verify"
+  },
+  {
+    "topic": 306510,
+    "errorMessage": "The callback URL or verify token couldn't be validated.",
+    "expect": "meta_webhook_verify"
+  },
+  {
+    "topic": 304761,
+    "errorMessage": "Request failed with status code 500",
+    "expect": "server_error"
+  },
+  {
+    "topic": 306949,
+    "errorMessage": "The WhatsApp App ID already has a webhook subscription",
+    "expect": "unknown",
+    "note": "Not named. A false match on the word Cloudflare (self-hosted behind a tunnel) was fixed 19 Oct 2026."
+  },
+  {
+    "topic": 306949,
+    "errorMessage": "I'm running a self-hosted instance of n8n via Docker behind a Cloudflare tunnel.",
+    "expect": "unknown",
+    "note": "Prose that mentions Cloudflare must not read as bot protection."
+  }
+]
