@@ -68,7 +68,8 @@ test('says it does not know for an unfamiliar error', () => {
   });
   assert.equal(report.cause, 'unknown');
   assert.equal(report.confident, false);
-  assert.match(report.summary, /don’t know|do not know/i);
+  assert.match(report.summary, /not in the catalog/i);
+  assert.doesNotMatch(report.summary, /don’t know|do not know/i);
 });
 
 test('strips a credential sitting in the workflow before it can be echoed', () => {

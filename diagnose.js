@@ -78,9 +78,9 @@ function diagnose(input) {
   }
   const onlyManual = triggers(workflow).length > 0 && liveTriggers.length === 0;
   if (onlyManual) {
-    return report('click_never_schedule', null, false, 'I don’t know of a runtime error. This workflow can never run on its own: the only trigger is manual.');
+    return report('click_never_schedule', null, false, 'No runtime error in this paste. This workflow can never run on its own: the only trigger is manual.');
   }
-  return report('unknown', node, false, 'I don’t know why this stopped. The error does not match a known class.');
+  return report('unknown', node, false, 'Not in the catalog. This page will not guess a fix. Open the failed node in n8n and read the error there.');
 }
 
 if (typeof module !== 'undefined' && module.exports) {

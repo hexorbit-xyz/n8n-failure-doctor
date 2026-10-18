@@ -16,6 +16,9 @@
   h1 { font-family: Palatino, Georgia, serif; font-weight: 560; font-size: 32px; letter-spacing: -0.03em; margin: 0 0 8px; }
   p { margin: 0 0 12px; }
   .muted { color: #9a9388; }
+  figure { margin: 0 0 16px; }
+  figure img { width: 100%; height: auto; border: 1px solid #2c313c; display: block; }
+  figcaption { color: #9a9388; font-size: 14px; margin-top: 6px; }
   textarea {
     width: 100%;
     min-height: 180px;
@@ -57,6 +60,19 @@
   <p class="muted">HexOrbit · no install · nothing is sent</p>
   <h1>Why did this n8n run stop?</h1>
   <p>Paste an execution, an Error Trigger payload, or a workflow export. The note stays in this browser. Nothing is sent. Known sentences are listed in <a href="catalog.html">catalog.html</a>.</p>
+  <p>This page names why a run already stopped. It does not fix JSON. It does not edit the workflow. If the sentence is not on the catalog, the note says “Not in the catalog.” That is a limit, not a broken page.</p>
+  <figure>
+    <img src="images/paste.svg" alt="Paste a stopped n8n run. Do not paste broken JSON.">
+    <figcaption>Paste the error from a stopped run. This page does not repair JSON.</figcaption>
+  </figure>
+  <figure>
+    <img src="images/match.svg" alt="The page names a cause only when the sentence is on the catalog.">
+    <figcaption>A known sentence gets a cause. Anything else stays outside the catalog. No guess.</figcaption>
+  </figure>
+  <figure>
+    <img src="images/you-fix.svg" alt="You apply the fix in n8n. This page does not change the workflow.">
+    <figcaption>You apply the fix in n8n. This page will not publish, reconnect, or edit anything.</figcaption>
+  </figure>
   <label for="raw">Execution or workflow JSON</label>
   <textarea id="raw" spellcheck="false" placeholder='{ "workflow": { "active": false, "nodes": [] }, "execution": { "status": "error" } }'></textarea>
   <button type="button" id="go">Diagnose</button>

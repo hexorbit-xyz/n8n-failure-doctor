@@ -20,7 +20,7 @@ The paste stays in the browser. Do not upload a file that still contains a live 
 | `test_webhook` | `/webhook-test/` or “webhook is not registered” |
 | `unpublished` | `active: false` and a webhook, cron, or schedule trigger |
 | `click_never_schedule` | the only trigger is manual |
-| `unknown` | anything else — the note says it does not know |
+| `unknown` | anything else — the note says it is not in the catalog |
 
 `apply` is always false.
 
