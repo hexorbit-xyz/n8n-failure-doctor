@@ -37,6 +37,11 @@
     font-weight: 600;
     cursor: pointer;
   }
+  #clear {
+    background: transparent;
+    color: #f2ede4;
+    border: 1px solid #2c313c;
+  }
   #out {
     margin-top: 18px;
     padding-top: 14px;
@@ -55,6 +60,7 @@
   <label for="raw">Execution or workflow JSON</label>
   <textarea id="raw" spellcheck="false" placeholder='{ "workflow": { "active": false, "nodes": [] }, "execution": { "status": "error" } }'></textarea>
   <button type="button" id="go">Diagnose</button>
+  <button type="button" id="clear">Clear</button>
   <div id="out" hidden>
     <p class="warn">This does not change the workflow. Apply any fix yourself in n8n.</p>
     <dl>
@@ -85,6 +91,11 @@
     document.getElementById('node').textContent = report.node || '—';
     document.getElementById('summary').textContent = report.summary;
     out.hidden = false;
+  });
+  document.getElementById('clear').addEventListener('click', () => {
+    document.getElementById('raw').value = '';
+    document.getElementById('out').hidden = true;
+    document.getElementById('err').hidden = true;
   });
 </script>
 </body>
