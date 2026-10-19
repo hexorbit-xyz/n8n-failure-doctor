@@ -4,7 +4,7 @@ const path = require('node:path');
 const { rows } = require('../catalog.js');
 
 const file = path.join(__dirname, '..', 'catalog.html');
-const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const esc = (t) => String(t).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const body = rows.map((r) => `      <tr>
         <td><code>${esc(r.cause)}</code></td>
         <td>${esc(r.sentence)}</td>
@@ -12,6 +12,6 @@ const body = rows.map((r) => `      <tr>
       </tr>`).join('\n');
 
 const html = fs.readFileSync(file, 'utf8');
-const next = html.replace(/(<tbody>\n)[\s\S]*?(\n    <\/tbody>)/, `$1${body}$2`);
+const next = html.replace(/(<tbody>\n)[\s\S]*?(\n {4}<\/tbody>)/, `$1${body}$2`);
 fs.writeFileSync(file, next);
 console.log(`catalog.html: ${rows.length} rows`);
