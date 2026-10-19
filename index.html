@@ -59,7 +59,7 @@
 <main>
   <p class="muted">HexOrbit · no install · nothing is sent</p>
   <h1>Why did this n8n run stop?</h1>
-  <p>Paste an execution, an Error Trigger payload, or a workflow export. The note stays in this browser. Nothing is sent. Known sentences are listed in <a href="catalog.html">catalog.html</a>.</p>
+  <p>Paste the error sentence from the red node, an execution, an Error Trigger payload, or a workflow export. The note stays in this browser. Nothing is sent. Known sentences are listed in <a href="catalog.html">catalog.html</a>.</p>
   <p>This page names why a run already stopped. It does not fix JSON. It does not edit the workflow. If the sentence is not on the catalog, the note says “Not in the catalog.” That is a limit, not a broken page.</p>
   <figure>
     <img src="images/paste.svg" alt="Paste a stopped n8n run. Do not paste broken JSON.">
@@ -73,12 +73,13 @@
     <img src="images/you-fix.svg" alt="You apply the fix in n8n. This page does not change the workflow.">
     <figcaption>You apply the fix in n8n. This page will not publish, reconnect, or edit anything.</figcaption>
   </figure>
-  <label for="raw">Execution or workflow JSON</label>
-  <textarea id="raw" spellcheck="false" placeholder='{ "workflow": { "active": false, "nodes": [] }, "execution": { "status": "error" } }'></textarea>
+  <label for="raw">Error sentence, or execution or workflow JSON</label>
+  <textarea id="raw" spellcheck="false" placeholder='Paste an error sentence, for example: Authorization failed - please check your credentials'></textarea>
   <button type="button" id="go">Diagnose</button>
   <button type="button" id="clear">Clear</button>
   <div id="out" hidden>
     <p class="warn">This does not change the workflow. Apply any fix yourself in n8n.</p>
+    <p id="mode" class="muted" hidden>Read as plain text: the whole paste was treated as the error sentence.</p>
     <dl>
       <dt>Cause</dt><dd id="cause"></dd>
       <dt>Node</dt><dd id="node"></dd>
@@ -88,21 +89,21 @@
   <p id="err" class="warn" hidden></p>
 </main>
 <script src="diagnose.js"></script>
+<script src="parse-input.js"></script>
 <script>
   document.getElementById('go').addEventListener('click', () => {
     const err = document.getElementById('err');
     const out = document.getElementById('out');
     err.hidden = true;
     out.hidden = true;
-    let parsed;
-    try {
-      parsed = JSON.parse(document.getElementById('raw').value);
-    } catch (e) {
+    const parsed = window.N8nParseInput.parseInput(document.getElementById('raw').value);
+    if (parsed.mode === 'error') {
       err.hidden = false;
-      err.textContent = 'That is not JSON.';
+      err.textContent = parsed.message;
       return;
     }
-    const report = window.N8nDoctor.diagnose(parsed);
+    document.getElementById('mode').hidden = parsed.mode !== 'text';
+    const report = window.N8nDoctor.diagnose(parsed.value);
     document.getElementById('cause').textContent = report.cause;
     document.getElementById('node').textContent = report.node || '—';
     document.getElementById('summary').textContent = report.summary;
@@ -112,6 +113,7 @@
     document.getElementById('raw').value = '';
     document.getElementById('out').hidden = true;
     document.getElementById('err').hidden = true;
+    document.getElementById('mode').hidden = true;
   });
 </script>
 </body>

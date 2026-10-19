@@ -5,7 +5,7 @@ No install. Open the page, paste the JSON, read the note. Nothing is sent, and n
 ## Use
 
 1. Open https://hexorbit-xyz.github.io/n8n-failure-doctor/ , or download this repo and open `index.html`.
-2. Paste an execution export, an Error Trigger payload, or a workflow export.
+2. Paste the error sentence, an execution export, an Error Trigger payload, or a workflow export. Broken JSON is refused, not repaired.
 3. Apply the fix yourself in n8n. This page will not change the workflow.
 
 The paste stays in the browser. Do not upload a file that still contains a live token. The page strips a few known token shapes from the note. That does not make the paste safe to send anywhere.
