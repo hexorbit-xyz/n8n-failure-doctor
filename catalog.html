@@ -22,7 +22,7 @@
 <main>
   <p class="muted">HexOrbit · no install · nothing is sent</p>
   <h1>Failure catalog</h1>
-  <p>These are the sentences the paste box already names. The page will not change the workflow. Apply the fix yourself in n8n.</p>
+  <p>These are the sentences the paste box already names. Each comes from a real error, most from public posts on community.n8n.io. The page will not change the workflow. Apply the fix yourself in n8n.</p>
   <p><a href="index.html">Back to the paste box</a></p>
   <table>
     <thead>
@@ -33,11 +33,6 @@
         <td><code>expired_auth</code></td>
         <td>Authorization failed - please check your credentials</td>
         <td>Reconnect that credential in n8n.</td>
-      </tr>
-      <tr>
-        <td><code>not_logged_in</code></td>
-        <td>You need to be logged in to do that.</td>
-        <td>Add that site's login on the HTTP node, or stop calling a private URL.</td>
       </tr>
       <tr>
         <td><code>missing_credential</code></td>
@@ -66,8 +61,168 @@
       </tr>
       <tr>
         <td><code>unknown</code></td>
-        <td>ECONNREFUSED 10.0.0.8:5432</td>
-        <td>Not in the catalog. This page will not guess a fix.</td>
+        <td>Error: Failed to receive response</td>
+        <td>The page does not guess. Read the failed node in n8n.</td>
+      </tr>
+      <tr>
+        <td><code>expired_auth</code></td>
+        <td>Authorization failed - please check your credentials</td>
+        <td>Reconnect that credential in n8n.</td>
+      </tr>
+      <tr>
+        <td><code>missing_credential</code></td>
+        <td>Credential with ID … does not exist for type "redis".</td>
+        <td>Open the node and pick a credential this instance actually has.</td>
+      </tr>
+      <tr>
+        <td><code>not_logged_in</code></td>
+        <td>You need to be logged in to do that.</td>
+        <td>Add that site's login on the HTTP node, or stop calling a private URL.</td>
+      </tr>
+      <tr>
+        <td><code>quota_exceeded</code></td>
+        <td>429 Too Many Requests — You exceeded your current quota.</td>
+        <td>Waiting will not help. Check the plan, billing, or quota of that service.</td>
+      </tr>
+      <tr>
+        <td><code>rate_limited</code></td>
+        <td>The service is receiving too many requests from you</td>
+        <td>Send fewer per minute: smaller batches with a Wait node, the HTTP Request Batching option, or Retry On Fail with a wait.</td>
+      </tr>
+      <tr>
+        <td><code>bot_protection</code></td>
+        <td>403 Forbidden – Cloudflare Attention Required</td>
+        <td>The site blocks automated callers. Use its official API or ask the owner to allow your n8n address.</td>
+      </tr>
+      <tr>
+        <td><code>oauth_redirect</code></td>
+        <td>Grant failed: Invalid redirect_uri: not registered for this client</td>
+        <td>Make the Redirect URL on the n8n credential match the one registered at the provider exactly.</td>
+      </tr>
+      <tr>
+        <td><code>ssl_certificate</code></td>
+        <td>unable to verify the first certificate</td>
+        <td>Install a valid certificate on the target server. Only for hosts you control, use Ignore SSL Issues on the HTTP Request node.</td>
+      </tr>
+      <tr>
+        <td><code>code_return_shape</code></td>
+        <td>Code doesn't return items properly</td>
+        <td>Return an array of objects shaped like [{ json: { ... } }].</td>
+      </tr>
+      <tr>
+        <td><code>referenced_node</code></td>
+        <td>Referenced node is unexecuted</td>
+        <td>Check the node name in the expression, and that node runs before this one on the same path.</td>
+      </tr>
+      <tr>
+        <td><code>paired_item</code></td>
+        <td>Paired item data could not be resolved</td>
+        <td>Refer to the earlier node with $('Node name').first() or .all(), or keep pairedItem in Code output.</td>
+      </tr>
+      <tr>
+        <td><code>undefined_field</code></td>
+        <td>Cannot read properties of undefined (reading 'json')</td>
+        <td>Check the earlier node actually returned items and the field name matches. Guard with ?. in Code nodes.</td>
+      </tr>
+      <tr>
+        <td><code>js_error</code></td>
+        <td>axios is not defined [line 5]</td>
+        <td>Fix the line named in the error. This page cannot read your code.</td>
+      </tr>
+      <tr>
+        <td><code>tool_schema_mismatch</code></td>
+        <td>Received tool input did not match expected schema</td>
+        <td>Simplify or describe the AI tool's input fields so the model fills them correctly.</td>
+      </tr>
+      <tr>
+        <td><code>runner_unresponsive</code></td>
+        <td>Task execution aborted because runner became unresponsive.</td>
+        <td>Split the data into smaller batches or give the host more memory.</td>
+      </tr>
+      <tr>
+        <td><code>no_webhook_response</code></td>
+        <td>The workflow did not return a response</td>
+        <td>Make every path reach a Respond to Webhook node, or respond immediately from the Webhook node.</td>
+      </tr>
+      <tr>
+        <td><code>data_table_limit</code></td>
+        <td>Data table size limit exceeded: 50MB used, limit is 50MB</td>
+        <td>Delete rows you no longer need, or store the data elsewhere.</td>
+      </tr>
+      <tr>
+        <td><code>invalid_url</code></td>
+        <td>Failed to parse URL from [object Request]</td>
+        <td>Check the URL starts with https:// and that any expression in it resolved to a value.</td>
+      </tr>
+      <tr>
+        <td><code>not_found</code></td>
+        <td>The resource you are requesting could not be found</td>
+        <td>Check the URL and ID in the node. Try the same request in a browser or curl.</td>
+      </tr>
+      <tr>
+        <td><code>bad_request</code></td>
+        <td>400 Bad request</td>
+        <td>Read the description field of the error in n8n. It usually names the rejected parameter.</td>
+      </tr>
+      <tr>
+        <td><code>server_error</code></td>
+        <td>502 Bad Gateway</td>
+        <td>The other service failed. Turn on Retry On Fail and try later.</td>
+      </tr>
+      <tr>
+        <td><code>connection_refused</code></td>
+        <td>The service refused the connection - perhaps it is offline</td>
+        <td>Check host and port and that the service runs. In Docker, localhost is the n8n container itself.</td>
+      </tr>
+      <tr>
+        <td><code>connection_reset</code></td>
+        <td>ECONNRESET: Client network socket disconnected before a secure TLS connection was established</td>
+        <td>Turn on Retry On Fail. If it repeats, check the other service and any proxy or firewall.</td>
+      </tr>
+      <tr>
+        <td><code>host_not_found</code></td>
+        <td>getaddrinfo ENOTFOUND</td>
+        <td>Check the domain spelling and that this n8n can resolve it.</td>
+      </tr>
+      <tr>
+        <td><code>timeout</code></td>
+        <td>The connection timed out</td>
+        <td>Turn on Retry On Fail, raise the node timeout, or ask for less per call.</td>
+      </tr>
+      <tr>
+        <td><code>forbidden</code></td>
+        <td>Forbidden - perhaps check your credentials?</td>
+        <td>The sign-in worked but this action is not allowed. Check permissions and scopes, IP allow-lists, and the error description.</td>
+      </tr>
+      <tr>
+        <td><code>webhook_not_registered</code></td>
+        <td>The requested webhook "GET …/webhook" is not registered.</td>
+        <td>Check which URL was called. /webhook-test/ needs Execute workflow clicked. /webhook/ needs the workflow published.</td>
+      </tr>
+      <tr>
+        <td><code>task_runner_timeout</code></td>
+        <td>Task request timed out. Your Code node task was not matched to a runner within the timeout period</td>
+        <td>Retry once. If every Code node fails, this is on the n8n side: check the status page or contact support.</td>
+      </tr>
+      <tr>
+        <td><code>code_node_timeout</code></td>
+        <td>Task execution timed out after 300 seconds</td>
+        <td>Process fewer items per run, split the work with Loop Over Items, or simplify the code.</td>
+      </tr>
+      <tr>
+        <td><code>database_locked</code></td>
+        <td>Error: database is locked</td>
+        <td>Stop whatever else uses the database file, or move n8n to Postgres. On n8n Cloud, contact support.</td>
+      </tr>
+      <tr>
+        <td><code>database_connect_timeout</code></td>
+        <td>timeout exceeded when trying to connect</td>
+        <td>Check the database is up, reachable from n8n, and not out of connections.</td>
+      </tr>
+      <tr>
+        <td><code>meta_webhook_verify</code></td>
+        <td>The callback URL or verify token couldn't be validated.</td>
+        <td>Use the callback URL n8n shows, publish the workflow, and match the verify token exactly.</td>
       </tr>
     </tbody>
   </table>
